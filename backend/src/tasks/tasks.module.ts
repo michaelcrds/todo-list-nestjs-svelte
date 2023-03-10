@@ -1,9 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { TasksController } from './tasks.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Task } from './entities/task.entity';
 
 @Module({
+  /* 
+    Importando o TypeOrmModule para dentro do module de task
+    permitindo a interação com o banco de dados
+  */
+  imports: [TypeOrmModule.forFeature([Task])],
   controllers: [TasksController],
-  providers: [TasksService]
+  providers: [TasksService],
 })
 export class TasksModule {}
