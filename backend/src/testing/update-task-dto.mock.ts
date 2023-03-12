@@ -1,7 +1,7 @@
-import { CreateTaskDto } from '../tasks/dto/create-task.dto';
+import { UpdateTaskDto } from '../tasks/dto/update-task.dto';
 
-export const updateTaskDtoMock: CreateTaskDto = {
-  title: 'test',
-  description: 'test description',
+export const updateTaskDtoMock: UpdateTaskDto = {
+  title: 'test update',
+  description: 'test description update',
   done: false,
 };
