@@ -9,7 +9,7 @@ import {
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   title: string;
@@ -21,8 +21,8 @@ export class Task {
   done: boolean;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt?: Date;
 
   @UpdateDateColumn()
-  updatedAt: string;
+  updatedAt?: Date;
 }

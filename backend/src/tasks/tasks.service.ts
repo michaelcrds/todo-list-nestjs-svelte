@@ -13,12 +13,14 @@ export class TasksService {
     private readonly taskRepository: Repository<Task>,
   ) {}
 
-  create(createTaskDto: CreateTaskDto) {
-    const taskToCreate: Task = new Task();
+  async create(createTaskDto: CreateTaskDto) {
+    let taskToCreate: Task = new Task();
 
     taskToCreate.title = createTaskDto.title;
     taskToCreate.description = createTaskDto.description || '';
     taskToCreate.done = false;
+
+    taskToCreate = await this.taskRepository.create(taskToCreate);
 
     return this.taskRepository.save(taskToCreate);
   }
@@ -50,7 +52,8 @@ export class TasksService {
     taskToUpdate.description = updateTaskDto.description;
     taskToUpdate.done = updateTaskDto.done;
 
-    return this.taskRepository.save(taskToUpdate);
+    await this.taskRepository.save(taskToUpdate);
+    return this.findOne(taskToUpdate.id);
   }
 
   async remove(id: number) {
